@@ -75,7 +75,6 @@ export async function getStaticPaths() {
       return {
         params: { slug: _product.slug },
       };
-    }),
-    fallback: true,
+    })
   };
 }

@@ -33,7 +33,6 @@ export async function getStaticPaths() {
       return {
         params: { slug: _category.slug },
       };
-    }),
-    fallback: true,
+    })
   };
 }

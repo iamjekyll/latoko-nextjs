@@ -1,9 +1,11 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
 
-export default function Home() {
+import ProductsList from '../components/ProductsList'
+
+// API
+import { getProducts } from '../utils/api'
+
+export default function Home({ products }) {
   return (
     <div className="container">
       <Head>
@@ -11,16 +13,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <Header title="Latoko" />
-        <p className="description">
-          <Link href="/test">
-            <a>Pindah</a>
-          </Link>
-        </p>
-      </main>
-
-      <Footer />
+        <>
+          <ProductsList products={products} />
+        </>
     </div>
   )
+}
+
+export async function getStaticProps(){
+  const products = await getProducts();
+  return { props: { products } };
 }
